@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+	<!-- The viewport is actual display area of screen. Setting <meta> tag name attribute to viewport gives developers control over page's width and scaling on different devices. Setting width to device-width and and height to device-height makes viewport size width and height of screen in CSS pixels at a rate of 100%. Setting initial-scale controls zoom level when page is first loaded. Setting maximum-scale ensures scale settings remain consistent when switching orientations. How do I handle this when it can cause accessibility problems? , initial-scale=1, maximum-scale=1 -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link href='http://fonts.googleapis.com/css?family=Dekko' rel='stylesheet' type='text/css'>
+    <link href="Shopping.css" title="Shopping.css" rel="stylesheet" type="text/css">
+    <script src="Shopping.js"></script>
+    <!-- Enables styling of HTML5 elements in versions of IE prior to IE9. -->
+    <!--[if lt IE 9]>
+    <script src="dist/html5shiv.js"></script>
+    <![endif]-->
+    <!-- When loading asynchronously, need to add this line of script to allow older browsers to recognize <picture> elements if they encounter them in page before Picturefill has finished loading. -->
+    <script>document.createElement("picture");</script>
+	<!-- Picturefill enables support for <picture> element and associated features in browsers that do not yet support them. Load Picturefill asynchronously without waiting for it to finish loading rest of document. -->
+    <script src="Picturefill.js" async></script>
+    <title>CC&#38;O</title>
+</head>
+
+
+<!-- Home page of shopping website displaying header and navigation menu in left column and just product images in right column.  -->
+<body>
+
+	<!-- Empty string span used in GetTextPixelWidth function. -->
+	<span id="StringSpan"></span>
+
+	<script type="text/javascript">
+
+		/* Calling SetImagesDisplayTop on load event because innerHTML doesn't execute <script> tag. InnerHTML needs to be implemented via sign up with web hosting company. See Favorites - Computer. */
+		argumentArray = ["CoffeeBeans", "ChocolateShavings", "OliveOil", "Main"];
+
+		/* SetImagesDisplayTop dynamically centers images vertically. */
+		ConfigureAddEventListener(window, "load", "onload", false, SetImagesDisplayTop, argumentArray);
+
+	</script>
+
+	<!-- Header which includes navigation is left column of page is present on all pages. (Role attributes communicates role of element to assistive technologies via accessibility APIs implemented in browsers.) -->
+	<header id="HeaderCCO" role="banner">
+
+		<script type="text/javascript">
+
+			/* Dynamically set header width according to Viewport size. */
+			SetHeaderWidth("HeaderCCO");
+
+		</script>
+
+		<h1>CC&#38;O</h1>
+		<h2>Coffee, Chocolate, &#38; Olive Oil</h2>
+
+		<!-- Vertical Page Navigation -->
+		<nav id="Nav" role = "navigation">
+			<ul id="MainMenu"><!-- class="ImageBorder"-->
+				<li id="ShopMainMenuItem" class="MainMenuItem"><a id="ShopLink" href="Shop.html">Shop</a>
+					<ul id="ShopDropDownMenu"><!-- class="ImageBorder" -->
+						<li id="CoffeeDropDownMenuItem" class="ShopDropDownMenuItem"><a id="CoffeeLink" href="Coffee.html">Coffee</a>
+							<ul id="CoffeeDropDownMenu"><!-- class="ImageBorder"-->
+								<li class="CoffeeDropDownMenuItem"><a id="CelebesKalossiLink" href="Celebes-Kalossi.html">Celebes Kalossi</a></li>
+							</ul>
+						</li>
+						<li class="ShopDropDownMenuItem"><a href="Chocolate.html">Chocolate</a></li>
+						<li class="ShopDropDownMenuItem"><a href="Olive-Oil.html">Olive Oil</a></li>
+					</ul>
+				</li>
+				<li class="MainMenuItem"><a id="AboutLink" href="About.html">About</a></li>
+				<li class="MainMenuItem"><a id="ContactLink" href="Contact.html">Contact</a></li>
+			</ul>
+		</nav>
+
+		<script type="text/javascript">
+
+			/* Dynamically set nav and menu (including drop down menus) widths based on longest menu item's pixel length. */
+			SetMenuWidth("MainMenu", "MainMenuItem", "Nav", "HeaderCCO");
+			SetMenuWidth("ShopDropDownMenu", "ShopDropDownMenuItem","Nav");
+			SetMenuWidth("CoffeeDropDownMenu", "CoffeeDropDownMenuItem", "Nav");
+			/* Dynamically set top and left positions of drop down menus and arrows next to parent menu item. */
+			SetDropDownMenuAndArrowTopAndLeft("MainMenu", "nav ul li:hover #", "#ShopMainMenuItem:after", "ShopMainMenuItem", "CoffeeLink", "ShopDropDownMenu", "ShopLink");
+			SetDropDownMenuAndArrowTopAndLeft("ShopDropDownMenu", "nav ul li ul li:hover #", "#CoffeeDropDownMenuItem:after", "CoffeeDropDownMenuItem", "CelebesKalossiLink", "CoffeeDropDownMenu", "CoffeeLink");
+
+		</script>
+
+	</header>
+
+	<!-- Main is right column of Home page and includes three images of coffee, chocolate, and olive oil. -->
+	<main id="Main">
+
+		<script type="text/javascript">
+
+			/* Set left margin of <main> to width of left column, <header>. */
+			SetMainLeftMargin("Main", "HeaderCCO");
+			/* Set Main Width to difference between Viewport and <header> width. */
+			SetMainWidthAndHeight("Main", "HeaderCCO");
+
+		</script>
+
+		<!-- Using <picture> element together with media and srcset attributes to set up multiple images, three (Chocolate, Coffee, and Olive Oil) of which will be loaded based on viewport size (Responsive Design).  Media attribute provides same queries as CSS @media selector.  Min and max width and height and portrait and landscape orientation are used here to determine image size.  <img> tag is declared last and is requirement for images to appear.  Used as default if no source tags are matched and also to declare other attributes to be used with image, in this case id, classes for image border, top and bottom margins and to center image horizontally, and alt.  Picturefill.js, which is declared in Shopping.html header, enables support for <picture> element and associated features in browsers that do no yet support them.  In Shopping.css, using @media queries so that browser knows what dimensions to use when image is loading. -->
+
+		<!-- Coffee -->
+		<picture> <!-- For ems in source media, using browser base font of 16px: ems converted to pixels are em amount * 16px. -->
+			<!-- IE 9 cannot see <source> element inside <picture> element. <video> tag workaround solves problem. -->
+			<!--[if IE 9]><video style="display: none;"><![endif]-->
+			<source media="(min-width:14.375em) and (max-width:29.25em) and (min-height:12.625em) and (max-height:43.5em) and (orientation:portrait)" srcset="Images/coffee-beans-mobile-portrait.jpg">
+			<source media="(min-width:19.375em) and (max-width:48.625em) and (min-height:12.625em) and (max-height:22em) and (orientation:landscape)" srcset="Images/coffee-beans-mobile-landscape.jpg">
+			<source media="(min-width:29.3125em) and (max-width:47.8125em) and (min-height:43.5em) and (max-height:71.625em) and (orientation:portrait)" srcset="Images/coffee-beans-medium-portrait.jpg">
+			<source media="(min-width:48.625em) and (max-width:83.1875em) and (min-height:22.0625em) and (max-height:36.25em) and (orientation:landscape)" srcset="Images/coffee-beans-medium-landscape.jpg">
+			<source media="(min-width:45.8125em) and (max-width:61.8125em) and (min-height:48.5em) and (max-height:76.25em) and (orientation:portrait)" srcset="Images/coffee-beans-large-portrait.jpg">
+			<source media="(min-width:61.875em) and (max-width:87.8125em) and (min-height:34.25em) and (max-height:48.4375em) and (orientation:landscape)" srcset="Images/coffee-beans-large-landscape.jpg">
+			<source media="(min-width:51.8125em) and (max-width:72.8125em) and (min-height:76.25em) and (max-height:106.25em) and (orientation:portrait)" srcset="Images/coffee-beans-xlarge-portrait.jpg">
+			<source media="(min-width:87.8125em) and (max-width:117.8125em) and (min-height:40.25em) and (max-height:61.25em) and (orientation:landscape)" srcset="Images/coffee-beans-xlarge-landscape.jpg" >
+			<source media="(min-width:65.9375em) and (max-width:97.8125em) and (min-height:114.25em) and (max-height:146.25em) and (orientation:portrait)" srcset="Images/coffee-beans-xxlarge-portrait.jpg)">
+			<source media="(min-width:125.8125em) and (max-width:157.8125em) and (min-height:53.75em) and (max-height:86.25em) and (orientation:landscape)" srcset="Images/coffee-beans-xxlarge-landscape.jpg">
+			<!-- Inclusion of <img> element with src attribute is for legacy browsers that do not support <picture> element. Also inclusion of srcset attribute in <img> element is workaround for Android 2.3 which cannot see <source> element. -->
+			<img id="CoffeeBeans" class="ImageBorder Center MarginBottom" src="Images/coffee-beans-large-landscape.jpg" srcset="Images/coffee-beans-large-landscape.jpg" alt="Picture of Coffee Beans.">
+			<!--[if IE 9]></video><![endif]-->
+		</picture>
+
+		<!-- Chocolate -->
+		<picture>
+			<!--[if IE 9]><video style="display: none;"><![endif]-->
+			<source media="(min-width:14.375em) and (max-width:29.25em) and (min-height:12.625em) and (max-height:43.5em) and (orientation: portrait)" srcset="Images/chocolate-shavings-rolled-rich-mobile-portrait.jpg">
+			<source media="(min-width:19.375em) and (max-width:48.625em) and (min-height:12.625em) and (max-height:22em) and (orientation: landscape)" srcset="Images/chocolate-shavings-rolled-rich-mobile-landscape.jpg">
+			<source media="(min-width:29.3125em) and (max-width:47.8125em) and (min-height:43.5em) and (max-height:71.625em) and (orientation:portrait)" srcset="Images/chocolate-shavings-rolled-rich-medium-portrait.jpg">
+			<source media="(min-width:48.625em) and (max-width:83.1875em) and (min-height:22.0625em) and (max-height:36.25em) and (orientation:landscape)" srcset="Images/chocolate-shavings-rolled-rich-medium-landscape.jpg">
+			<source media="(min-width:45.8125em) and (max-width:61.8125em) and (min-height:48.5em) and (max-height:76.25em) and (orientation:portrait)" srcset="Images/chocolate-shavings-rolled-rich-large-portrait.jpg">
+			<source media="(min-width:61.875em) and (max-width:87.8125em) and (min-height:34.25em) and (max-height:48.4375em) and (orientation:landscape)" srcset="Images/chocolate-shavings-rolled-rich-large-landscape-30.jpg">
+			<source media="(min-width:51.8125em) and (max-width:72.8125em) and (min-height:76.25em) and (max-height:106.25em) and (orientation:portrait)" srcset="Images/chocolate-shavings-rolled-rich-xlarge-portrait.jpg">
+			<source media="(min-width:87.8125em) and (max-width:117.8125em) and (min-height:40.25em) and (max-height:61.25em) and (orientation:landscape)" srcset="Images/chocolate-shavings-rolled-rich-xlarge-landscape.jpg" >
+			<source media="(min-width:65.9375em) and (max-width:97.8125em) and (min-height:114.25em) and (max-height:146.25em) and (orientation:portrait)" srcset="Images/chocolate-shavings-rolled-rich-xxlarge-portrait.jpg)">
+			<source media="(min-width:125.8125em) and (max-width:157.8125em) and (min-height:53.75em) and (max-height:86.25em) and (orientation:landscape)" srcset="Images/chocolate-bar-pieces-with-shavings-xxlarge-landscape.jpg">
+			<img id="ChocolateShavings" class="ImageBorder Center MarginBottom" src="Images/chocolate-shavings-rolled-rich-large-landscape-30.jpg" srcset="Images/chocolate-shavings-rolled-rich-large-landscape-30.jpg" alt="Picture of Rich Looking Rolled Chocolate Shavings.">
+			<!--[if IE 9]></video><![endif]-->
+		</picture>
+
+		<!-- Olive Oil -->
+		<picture>
+			<!--[if IE 9]><video style="display: none;"><![endif]-->
+			<source media="(min-width:14.375em) and (max-width:29.25em) and (min-height:12.625em) and (max-height:43.5em) and (orientation: portrait)" srcset="Images/olive-oil-in-metal-container-mobile-portrait.jpg">
+			<source media="(min-width:19.375em) and (max-width:48.625em) and (min-height:12.625em) and (max-height:22em) and (orientation: landscape)" srcset="Images/olive-oil-in-metal-container-mobile-landscape.jpg">
+			<source media="(min-width:29.3125em) and (max-width:47.8125em) and (min-height:43.5em) and (max-height:71.625em) and (orientation:portrait)" srcset="Images/olive-oil-in-metal-container-medium-portrait.jpg">
+			<source media="(min-width:48.625em) and (max-width:83.1875em) and (min-height:22.0625em) and (max-height:36.25em) and (orientation:landscape)" srcset="Images/olive-oil-in-metal-container-medium-landscape.jpg">
+			<source media="(min-width:45.8125em) and (max-width:61.8125em) and (min-height:48.5em) and (max-height:76.25em) and (orientation:portrait)" srcset="Images/olive-oil-in-metal-container-large-portrait.jpg">
+			<source media="(min-width:61.875em) and (max-width:87.8125em) and (min-height:34.25em) and (max-height:48.4375em) and (orientation:landscape)" srcset="Images/olive-oil-in-metal-container-large-landscape.jpg">
+			<source media="(min-width:51.8125em) and (max-width:72.8125em) and (min-height:76.25em) and (max-height:106.25em) and (orientation:portrait)" srcset="Images/olive-oil-in-metal-container-xlarge-portrait.jpg">
+			<source media="(min-width:87.8125em) and (max-width:117.8125em) and (min-height:40.25em) and (max-height:61.25em) and (orientation:landscape)" srcset="Images/olive-oil-in-metal-container-xlarge-landscape.jpg" >
+			<source media="(min-width:65.9375em) and (max-width:97.8125em) and (min-height:114.25em) and (max-height:146.25em) and (orientation:portrait)" srcset="Images/olive-oil-in-metal-container-xxlarge-portrait.jpg)">
+			<source media="(min-width:125.8125em) and (max-width:157.8125em) and (min-height:53.75em) and (max-height:86.25em) and (orientation:landscape)" srcset="Images/olive-oil-in-metal-container-xxlarge-landscape.jpg">
+			<img id="OliveOil" class="ImageBorder Center" src="Images/olive-oil-in-metal-container-large-landscape.jpg" srcset="Images/olive-oil-in-metal-container-large-landscape.jpg" alt="Picture of Olive Oil Dripping Into Metal Container.">
+			<!--[if IE 9]></video><![endif]-->
+		</picture>
+
+	</main>
+
+</body>
+</html>
+

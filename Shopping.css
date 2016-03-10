@@ -1,0 +1,517 @@
+/* Shopping.css */
+
+/* Added to CSS DOM dynamically with function AddTopAndLeftObjectPositionsToCSSDom called from SetDropDownMenuAndArrowTopAndLeft in file Shopping.js. */
+/*nav ul li:hover #ShopDropDownMenu {
+    top: Determined dynamically;
+    left: Determined dynamically;
+}*/
+
+/*nav ul li ul li:hover #CoffeeDropDownMenu {
+    top: Determined dynamically;
+    left: Determined dynamically;
+}*/
+
+/* Tag Selectors */
+html {
+    /* Since browsers calculate height of elements based on element's parent, set <html> and <body> to 100% height so that <#HeaderCCO> and <main> columns will take up entire viewport when height is also set to 100%. */
+    height: 100%;
+    /* Overflow refers to content. When set to auto, allows browser to decide whether to clip content, render scroll bars or just display content when it overflows its block level container. */
+    overflow: auto;
+    /* Set Firefox, Chrome, Safari, and IE to border-box so that border and padding are included in width of element. */
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a[href], input[type='submit'], input[type='image'], label[for], select, button, .pointer {
+    cursor: pointer;
+}
+
+/* Extend border-box to all elements with universal selector that matches name of any element type and with :before and :after pseudo selectors that enables extension to be from element's first child to last child. */
+*, *:before, *:after { /* Extend border-box to all elements with universal selector that matches name of any element type. */
+    -moz-box-sizing: inherit; /* Inherit means elements will take box-sizing value from parent element - in this case <html>. */
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+body {
+    height: 100%;
+    overflow: visible; /* Content is not clipped. */
+    font: 84%/1.5 Verdana, Arial, sans-serif; /* .84 * 16px(Base font used by most browsers?) = 13.44px Font Size.  1.5 * 13.44 = 20.16px Line Height. If line-height was 1.5em, children would inherit 20.16.  With 1.5, children inherit 1.5 and Line Height is relative to child's font-size. */
+    color: #000; /* Black */
+    margin: 0 auto; /* Center <body> horizontally. */
+    padding: 0;
+    background: #FFF; /* White */
+    position: relative;
+}
+
+/* Since browsers automatically handle unrecognized elements as inline elements, set display to block for browser versions that do not recognize HTML5 elements (IE does not recognize <main>. */
+main, header, nav {
+   display: block;
+}
+
+/* Menu Styling. */
+nav  {
+    outline: 0; /* Removes Firefox's dotted outline around visited link. Default styling for accessibility for users without ability to use  mouse. Visual indicator replaced by different text color. */
+}
+
+nav ul {
+    padding-left: 0; /* Align left with headings. */
+    padding-right: 0; /* Explicitly set because both left and right padding of nav used in dynamic determination of nav width. */
+}
+
+nav ul li {
+    list-style-type: none; /* Specifies what precedes list item - disc, circle, square, decimal, etc,. For menu, no list type is needed. */
+    font-size: 1.10em; /* 1.10 * 13.44 = 14.784px Font Size. */
+    font-weight: bold;
+    line-height: 2.4; /* 2.4 * 14.784 = 35.4816px Line Height. */
+    position: relative; /* List items are positioned relative to themselves. If no other positioning attributes set, element is static. Relative position needed to make position of Drop Down Menu absolute. */
+}
+
+nav ul li a:link { /* Unvisited links. */
+    color: #560000; /* Reddish Shade of Brown. */
+    padding: 10px 8px 8px;
+    text-decoration: none; /* Link will not be underline as most links are by default. */
+    display: block; /* Makes link fill out all of li. */
+    white-space: nowrap; /* Sequences of white space are collapsed and line breaks are suppressed within text (text-wrapping). */
+}
+
+nav ul li a:visited { /* Main menu links. */
+   color: #904928; /* Lighter shade of brown. */
+}
+
+nav ul li a:hover { /* Main menu links. */
+    color: #560000; /* Reddish Shade of Brown. */
+    text-shadow: #bf8040 -1px 0,
+                 #bf8040 0 1px,
+                 #bf8040 1px 0,
+                 #bf8040 0 -1px; /* Tan Color. Text shadow serves as text outline: -x left (horizontal distance), -y top (vertical distance). */
+}
+
+nav ul li:hover  { /* This creates  persistent hover state, meaning top-most link stays hovered even when cursor has moved down ShopDropDownMenu list (drop down menu of Shop item of main menu). */
+    color: #560000; /* Reddish Shade of Brown. */
+    text-shadow: #bf8040 -1px 0,
+                 #bf8040 0 1px,
+                 #bf8040 1px 0,
+                 #bf8040 0 -1px; /* Tan Color. Text shadow serves as text outline: -x left (horizontal distance), -y top (vertical distance). */
+}
+
+nav ul li:hover ul li:hover  { /* This creates  persistent hover state, meaning top-most Drop Down Menu link stays hovered even when cursor has moved down CoffeeDropDownMenu list (drop down menu of Coffee item in Shop drop down menu). */
+    color: #560000; /* Reddish Shade of Brown. */
+    text-shadow: #bf8040 -1px 0,
+                 #bf8040 0 1px,
+                 #bf8040 1px 0,
+                 #bf8040 0 -1px; /* Tan Color. Text shadow serves as text outline: -x left (horizontal distance), -y top (vertical distance). */
+}
+
+nav ul li:hover ul  { /* Since persistent hover state creates global style for ShopDropDownMenu links even before they are hovered, undo effect by zeroing out text shadow. */
+    color: #560000; /* Reddish Shade of Brown. */
+    text-shadow: #bf8040 0 0,
+                 #bf8040 0 0,
+                 #bf8040 0 0,
+                 #bf8040 0 0;
+}
+
+nav ul li ul li:hover ul   { /* Since persistent hover state creates global style for CoffeeDropDownMenu links even before they are hovered, undo effect by zeroing out text shadow. */
+    color: #560000; /* Reddish Shade of Brown. */
+    text-shadow: #bf8040 0 0,
+                 #bf8040 0 0,
+                 #bf8040 0 0,
+                 #bf8040 0 0;
+}
+
+nav ul li:hover ul a:visited { /* ShopDropDownMenu visited links. */
+    color: #904928; /* Lighter shade of brown. */
+}
+
+nav ul li ul li:hover ul a:visited { /* CoffeeDropDownMenu visited links. */
+    color: #904928; /* Lighter shade of brown. */
+}
+
+main {
+    height: 100%;
+    margin-top: 0; /* Margin set dynamically on home page. Set to 0 for product pages to align product title with CC&O title. */
+    margin-bottom: 0;
+    margin-right: 0;
+    padding: 0 15px 15px; /* Top padding set to 0 to align product tiles with CC&O title. */
+    background: #53290b; /* Dark Brown; Saddle Brown #8b4513 */
+    border-left: 2px solid #3a1c07; /* Very dark shade of brown. */
+    position: relative; /* Positioned relative to itself. If no other positioning attributes set, element is static. */
+}
+
+img {
+    max-width: 100%; /* Images will never go beyond with of parent container. If parent container shrinks below width of image, image will scale down along with it. */
+    height: auto; /* Ensures images aspect ration is preserved if image shrinks or expands. */
+    margin: 0;
+    box-sizing: content-box; /* Do not want padding and border to be included in image width or height. */
+}
+
+/* ID Selectors */
+/* StringSpan is empty span used to determine pixel width of string in GetTextPixelWidth if browser doesn't recognize <canvas> element. */
+#StringSpan {
+    white-space: nowrap;
+    left: -9999px;
+    position: absolute;
+}
+
+#HeaderCCO {
+    height: 100%;
+    margin: 0; /* */
+    padding: 0 15px 15px;
+    float: left; /* Place #HeaderCCO as left column to left of its container <body> */
+    background: #D9C714; /* Olive Oil Green */
+}
+
+/* Styling for title of page. */
+#HeaderCCO h1 {
+    font: bold 5.0em Calisto, Georgia, serif; /* 4.0 * 13.44 = 53.76px Font Size. */
+    color: #5B0000; /* Chocolate Color */
+    text-shadow: #280000 1px 2px 1px; /* First pixel value specifies horizontal distance and second specifies vertical distance of shadow. Third value specifies blur radius. */
+    /*margin-Bottom: 0;  Eliminate auto bottom margin so that title and sub-title are closer together. */
+    margin: 0;
+    padding: 5px 0 0;
+}
+
+/* Styling for sub-title of page. */
+#HeaderCCO h2 {
+    font: bold 1.9em Dekko, handwriting; /* 1.8 * 13.44 = 24.192px Font Size. */
+    color: #600; /* Mahogany Color */
+    text-shadow: #280000 1px 2px 1px, #240000 1px 2px 1px; /* Shadow text with deeper shade of mahogany, 1px right (horizontal distance), 2 px Bottom (vertical distance), 1 px blur radius. */
+    margin-top: 0; /* Eliminate auto top margin so that title and sub-title are closer together. */
+    margin-bottom: 0;
+}
+
+#ShopDropDownMenu, #CoffeeDropDownMenu {
+    background: #D9C714; /* For browsers that don't support rgba, Adding #HeaderCCO background color of olive oil green allows drop down menus to stay when hovering over it in IE7+. */
+    background: rgba(217, 199, 20, 0); /* rgba makes background transparent - first 3 numbers are #HeaderCCO background color of olive green and fourth represents transparency value  between 0 and 1 with zero being fully transparent and 1 fully opaque. Makes overlay of drop down menu fully visible against background. */
+    left: -9999px; /* Hide off-screen when not needed (more accessible (still available to screen reader) than display:none). */
+    position: absolute; /* Makes top and left positioning of drop down menus relative to parent menu. It always appears in same place relative to parent menu. */
+}
+
+#ShopDropDownMenu li, #CoffeeDropDownMenu li, #StringSpan {
+    list-style-type: none;
+    font-size: 1.0em; /* 1.0 * parent's (nav ul li) 14.784 = 14.784px Font Size. 1.o means same size as main menu. */
+    font-weight: bold;
+    line-height: 2.4; /* 2.4 * 14.784 = 35.4816px Line Height. */
+}
+
+#ShopDropDownMenu li a:hover, #CoffeeDropDownMenu li a:hover {
+    color: #560000;/* Reddish Shade of Brown. */
+    text-shadow: #bf8040 -1px 0,
+                 #bf8040 0 1px,
+                 #bf8040 1px 0,
+                 #bf8040 0 -1px; /* Tan Color. Text shadow serves as text outline: -x left (horizontal distance), -y top (vertical distance). */
+}
+
+#ShopMainMenuItem:after { /* Pseudo-element, inline by default, that typically adds content after last child of element. In this case, used to create arrow after ShopDropDownMenuItem in order to indicate there is drop down menu. Using one colon for IE8. */
+    width: 0;
+    height: 0;
+    content: "";
+    left: 5px; /* Initial value added for spacing between menu item and arrow. Left position will be determined dynamically in function SetDropDownMenuAndArrowTopAndLeft in file Shopping.js. */
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid #560000;
+    position: absolute; /* Arrow positioned absolute to parent menu which has  position of relative. */
+}
+
+#CoffeeDropDownMenuItem:after { /* Pseudo-element, inline by default, that typically adds content after last child of element. In this case used to create arrow after CoffeeDropDownMenuItem in order to indicate there is drop down menu. Using one colon for IE8. */
+    width: 0;
+    height: 0;
+    content: " ";
+    left: 5px; /* Initial value added for spacing between menu item and arrow. Left position will be determined dynamically in function SetDropDownMenuAndArrowTopAndLeft in file Shopping.js. */
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid #560000;
+    position: absolute; /* Arrow positioned absolute to parent menu which has  position of relative. */
+}
+
+#ShoppingCartContainer {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+}
+
+#ShoppingCartIcon {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: -9999px;
+    position: absolute;
+}
+
+#ShoppingCartArrow {
+    width: 32px;
+    height: 0;
+    border-bottom: 16px solid #ead71c;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    top: 0;
+    left: -9999px;
+    position: absolute;
+}
+
+#ShoppingCartDropDown {
+    margin: 0;
+    padding: 2px;
+    background: #E0D242;
+    border: 1px solid #eedf49;
+    border-radius: 4px;
+    outline: 0;
+    top: 0;
+    left: -9999px;
+    position: absolute;
+}
+
+#ShoppingCartDropDown li {
+    list-style-type: none;
+    font-size: .9em; /* .9*13.44 = 12.096 Font Size.  1.5*12.096 = 18.144 Line Height. */
+    color: #560000; /* Reddish Shade of Brown. */
+    font-weight: bold; /* Font properties are inherited from <body>: .84*16px = 13.44 Font Size.  1.5*13.44 = 20.16px Line Height. */
+    margin: 0;
+    padding: 5px 8px 4px;
+    border-bottom: 1px solid #eedf49;
+    white-space: pre; /* Sequences of white space and line breaks are preserved within text but text wrapping is suppressed. */
+}
+
+#ShoppingCartDropDown #ShoppingCartTitle {
+    font-size: 1.035em; /* 1.035*13.44 = 13.9104 Font Size.  1.5*12.096 = 18.144 Line Height. */
+    text-align: center;
+}
+
+#ShoppingCartDropDown #ShoppingCartCheckout {
+    background: #3a1c07;
+    border: none;
+    -moz-border-radius: .5em; /* .5*width or height. */
+    -webkit-border-radius: .5em;
+    border-radius: .5em;
+}
+
+#ShoppingCartDropDown #ShoppingCartCheckout #Checkout:link {
+    font-size: 1.15em; /* 1.15*12.096 = 13.9104 Font Size. */
+    color: #eedf49;
+    text-align: center;
+    text-decoration: none; /* Link will not be underlined by default. */
+    display: block; /* Makes link fill out all of li. */
+}
+
+#ShoppingCartIcon:hover {
+   /* border: 1px Solid #eedf49;*/
+}
+
+#ShoppingCartDropDown .ShoppingCartItem:hover {
+    background: #F2E778;
+}
+
+/*#ShoppingCartDropDown ul #ShoppingCartTitle:hover {
+    background: #E0D242;
+}*/
+
+#ShoppingCartDropDown #ShoppingCartTotal:hover {
+    background: #E0D242;
+}
+
+/*#ShoppingCartDropDown ul #ShoppingCartCheckout:hover {
+    background: #E0D242;
+}*/
+
+#ShoppingCartDropDown #ShoppingCartCheckout #Checkout:visited {
+    color: #eedf49;
+}
+
+#ShoppingCartDropDown #ShoppingCartCheckout #Checkout:hover {
+    color: #eedf49;
+    text-shadow: #d6c841 -1px 0,
+                         0 1px,
+                         1px 0,
+                         0 -1px;
+}
+
+/* Using @media queries so that browser knows what dimensions to use when three images for Shopping Home page are loading. Min and max width and height and portrait and landscape orientation are used here to determine image size - mobile, medium, large, xlarge, xxlarge. Media query expressions resolve to true or false. */
+/* Shopping.html */
+
+#CoffeeBeans, #ChocolateShavings, #OliveOil { /* For older browsers that do not recognize media queries. Using large landscape image dimensions of <img> element in <picture> element in Shopping.html that is also default option. */
+    width: 868px;
+    height: 167px;
+}
+@media (min-width:14.375em) and (max-width:29.25em) and (min-height:12.625em) and (max-height:43.5em) and (orientation:portrait) {
+#CoffeeBeans, #ChocolateShavings, #OliveOil {
+    width:202px;
+    height:90px;
+}}
+@media (min-width:19.375em) and (max-width:48.625em) and (min-height:12.625em) and (max-height:22em) and (orientation:landscape) {
+#CoffeeBeans, #ChocolateShavings, #OliveOil {
+    width:348px;
+    height:62px;
+}}
+@media (min-width:29.3125em) and (max-width:47.8125em) and (min-height:43.5em) and (max-height:71.625em) and (orientation:portrait){
+#CoffeeBeans, #ChocolateShavings, #OliveOil {
+    width:403px;
+    height:247px;
+}}
+@media (min-width:48.625em) and (max-width:83.1875em) and (min-height:22.0625em) and (max-height:36.25em) and (orientation:landscape){
+#CoffeeBeans, #ChocolateShavings, #OliveOil {
+     width:731px;
+     height:96px;
+}}
+@media (min-width:45.8125em) and (max-width:61.8125em) and (min-height:48.5em) and (max-height:76.25em) and (orientation:portrait) {
+#CoffeeBeans, #ChocolateShavings, #OliveOil {
+    width:586px;
+    height:273px;
+}}
+@media (min-width:61.875em) and (max-width:87.8125em) and (min-height:34.25em) and (max-height:48.4375em) and (orientation:landscape){
+#CoffeeBeans, #ChocolateShavings, #OliveOil {
+    width:868px;
+    height:167px;
+}}
+@media (min-width:51.8125em) and (max-width:72.8125em) and (min-height:76.25em) and (max-height:106.25em) and (orientation:portrait) {
+#CoffeeBeans, #ChocolateShavings, #OliveOil {
+    width:813px;
+    height:426px;
+}}
+@media (min-width:87.8125em) and (max-width:117.8125em) and (min-height:40.25em) and (max-height:61.25em) and (orientation:landscape){
+#CoffeeBeans, #ChocolateShavings, #OliveOil {
+    width:1174px;
+    height:211px;
+}}
+@media (min-width:65.9375em) and (max-width:97.8125em) and (min-height:114.25em) and (max-height:146.25em) and (orientation:portrait){
+#CoffeeBeans, #ChocolateShavings, #OliveOi{
+    width:923px;
+    height:635px;
+}}
+@media (min-width:125.8125em) and (max-width:157.8125em) and (min-height:53.75em) and (max-height:86.25em) and (orientation:landscape) {
+#CoffeeBeans, #ChocolateShavings, #OliveOil {
+    width:1642px;
+    height:313px;
+}}
+/* Coffee.html */
+#CelebesKalossi, #CelebesKalossi1, #CelebesKalossi2, #CelebeseKalossi3 {
+    width: 253px;
+    height: 273px;
+    opacity: 1.0; /* Opacity used to blur images on product pages on  mouseover event. On event opacity is changed to .35 and on mouseleave event changed back to 1.0.  */
+    filter: alpha(opacity=100); /* For IE versions less than 9 that don't recognize opacity. */
+}
+
+@media (min-width:61.875em) and (max-width:87.8125em) and (min-height:34.25em) and (max-height:48.4375em) and (orientation:landscape){
+#CelebesKalossi, #CelebesKalossi1, #CelebesKalossi2, #CelebesKalossi3 {
+    width: 253px;
+    height: 273px;
+}}
+
+/* Class Selectors */
+/* Styling for Product Headers. */
+.HeaderProduct {
+    font: bold 4.0em/1.15 Calisto, Georgia, serif; /* 4.0 * 13.44 = 53.76px Font Size. 1.15 * 53.76 = 61.824 Line Height. */
+    color: #dccc2b; /* Olive Oil Green */
+    text-shadow: #dccc2b 1px 2px 1px;
+    margin: 0;
+    padding: 15px 0 0;
+}
+
+.ImageBorder {
+    border: 2px solid #3a1c07; /* Very dark shade of brown. */
+}
+
+.Center { /* Used to center images horizontally. */
+    display: block; /* Block level elements are centered horizontally with auto left and right margins. */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.MarginBottom { /* Used to add vertical space between images. */
+    margin-bottom: 20px;
+}
+
+.MarginRight { /* Used to add horizontal space between images. */
+    margin-right: 15px;
+}
+
+/* Styling for figure which holds product image, title, county and region, price, and flavor notes. */
+.FigureContainer {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+}
+
+/* Styling for name of product under image on product page. */
+.TitleName {
+    font: bold 1.6em/1.19 "Century Gothic", "Bank Gothic", sans-serif; /* 1.6 * 13.44 = 21.504px FS. 1.19 * 21.504 = 25.590 LH. */
+    color: #e6db6a; /* Lighter Shade of Olive Green. */
+    margin: 0;
+    padding: 5px 0 7px;
+    border-bottom: 1px solid #dccc2b; /* Border bottom is line separating title of product from country and region. */
+}
+
+/* Styling for country and region of product under image on product page. */
+.TitleCountryAndRegion{
+    font: bold 1.4em/1.18 "Century Gothic", "Bank Gothic", sans-serif;
+    color: #e6db6a; /* Lighter Shade of Olive Green. */
+    margin: 0;
+    padding: 6px 0;
+}
+
+/* Styling for flavor notes and price that appear when image is moused over. */
+.TitleFlavorNotesAndPrice {
+    font: 1.3em/1.18 "Century Gothic", "Bank Gothic", sans-serif;
+    color: #e6db6a; /* Lighter Shade of Olive Green. */
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: -9999px; /* Hides price and flavor notes until moused over, then set dynamiccally in DisplayFavorNotesAndPriceOnImage. */
+    position: absolute;
+}
+
+.Arrow {
+    font: bold 2.2em/1.19 "Century Gothic", "Bank Gothic", sans-serif; /* 1.6 * 13.44 = 21.504px FS. 1.19 * 21.504 = 25.590px LH. */
+    color: #dccc2b;
+    text-shadow: #c9b81c -1px 0,
+                 #c9b81c 0 1px,
+                 #c9b81c 1px 0,
+                 #c9b81c 0 -1px; /* #dccc2b 1px 2px 1px; */
+    background: #53290b; /* Dark Brown */
+    margin: 0;
+    padding: 0 13px;
+    border: 0;
+    outline: 0;
+    /*top: 0;*/
+    left: -9999px;
+    position:absolute;
+}
+
+.AddToCart {
+    font: bold 1.1em/1.18 "Century Gothic", "Bank Gothic", sans-serif;
+    color: #3a1c07; /* Very dark shade of brown. */
+    margin: 5px 0 0 0;
+    background: #dccc2b;
+    border: none;
+    -moz-border-radius: 10%;
+    -webkit-border-radius: 10%;
+    border-radius: 2em;
+    padding: 5px;
+    left: -9999px;
+    position: absolute;
+}
+
+/* Added to CSS DOM dynamically with function AddTopAndLeftObjectPositionsToCSSDom called from SetDropDownMenuAndArrowTopAndLeft in file Shopping.js. */
+/* #ShopDropDownMenuItem:after {
+    top: Determined dynamically;
+    left: Determined dynamically;
+}
+*/
+
+/* #CoffeeDropDownMenuItem:after {
+    top: Determined dynamically;
+    left: Determined dynamically;
+}
+*/
+
+/* Added to CSS DOM dynamically with function AddTopAndLeftObjectPositionsToCSSDom called from function DisplayShoppingCartIconArrowAndDropDown in file Shopping.js. */
+/* #ShoppingCartIcon:hover #ShoppingCartArrow {
+    top: Determined Dynamically;
+    left: Determined Dynamically;
+*/
+
+/* #ShoppingCartIcon:hover #ShoppingCartDropDown {
+    top: Determined dynamically;
+    left: Determined dynamically;
+}*/

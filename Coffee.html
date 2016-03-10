@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<!-- The viewport is actual display area of screen. Setting <meta> tag name attribute to viewport gives developers control over page's width and scaling on different devices. Setting width to device-width and and height to device-height makes viewport size width and height of screen in CSS pixels at  rate of 100%. Setting initial-scale controls zoom level when page is first loaded. Setting maximum-scale ensures scale settings remain consistent when switching orientations. How do I handle this when it can cause accessibility problems? , initial-scale=1, maximum-scale=1 -->
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link href='http://fonts.googleapis.com/css?family=Dekko' rel='stylesheet' type='text/css'>
+	<link href="Shopping.css" title="Shopping.css" rel="stylesheet" type="text/css">
+	<script src="Shopping.js"></script>
+	<!-- Enables styling of HTML5 elements in versions of IE prior to IE9. -->
+	<!--[if lt IE 9]>
+	<script src="dist/html5shiv.js"></script>
+	<![endif]-->
+	<!-- When loading asynchronously, need to add this line of script to allow older browsers to recognize <picture> elements if they encounter them in page before Picturefill has finished loading. -->
+	<script>document.createElement("picture");</script>
+	<!-- Picturefill enables support for <picture> element and associated features in browsers that do not yet support them. Load Picturefill asynchronously without waiting for it to finish loading rest of document. -->
+	<script src="Picturefill.js" async></script>
+	<title>Coffee</title>
+</head>
+
+<!-- Coffee product page displaying header and navigation menu in left column and three different coffees in right column that
+contain an image, name, country and region, and when moused over price and flavor notes. -->
+<body>
+
+	<span id="StringSpan"></span>
+
+	<!-- HEADER which includes navigation is left column of page is present on all pages. (Role attributes communicates role of element to assistive technologies via accessibility APIs implemented in browsers.) -->
+	<header id="HeaderCCO" role="banner">
+
+		<script type="text/javascript">
+
+			/* Dynamically set header width according to Viewport size. */
+			SetHeaderWidth("HeaderCCO");
+
+		</script>
+
+		<h1>CC&#38;O</h1>
+		<h2>Coffee, Chocolate, &#38; Olive Oil</h2>
+
+		<!-- Vertical Page NAVIGATION -->
+		<nav id="Nav" role = "navigation">
+			<ul id="MainMenu"><!-- class="ImageBorder"-->
+				<li id="ShopMainMenuItem" class="MainMenuItem"><a id="ShopLink" href="Shop.html">Shop</a>
+					<ul id="ShopDropDownMenu"><!-- class="ImageBorder" -->
+						<li id="CoffeeDropDownMenuItem" class="ShopDropDownMenuItem"><a id="CoffeeLink" href="Coffee.html">Coffee</a>
+							<ul id="CoffeeDropDownMenu"><!-- class="ImageBorder"-->
+								<li class="CoffeeDropDownMenuItem"><a id="CelebesKalossiLink" href="Celebes-Kalossi.html">Celebes Kalossi</a></li>
+							</ul>
+						</li>
+						<li class="ShopDropDownMenuItem"><a href="Chocolate.html">Chocolate</a></li>
+						<li class="ShopDropDownMenuItem"><a href="Olive-Oil.html">Olive Oil</a></li>
+					</ul>
+				</li>
+				<li class="MainMenuItem"><a id="AboutLink" href="About.html">About</a></li>
+				<li class="MainMenuItem"><a id="ContactLink" href="Contact.html">Contact</a></li>
+			</ul>
+		</nav>
+
+		<script type="text/javascript">
+
+			/* Dynamically set nav and menu (including drop down menus) widths based on longest menu item's pixel length. */
+			SetMenuWidth("MainMenu", "MainMenuItem", "Nav", "HeaderCCO");
+			SetMenuWidth("ShopDropDownMenu", "ShopDropDownMenuItem","Nav");
+			SetMenuWidth("CoffeeDropDownMenu", "CoffeeDropDownMenuItem", "Nav");
+			/* Dynamically set top and left positions of drop down menus and arrows next to parent menu item. */
+			SetDropDownMenuAndArrowTopAndLeft("MainMenu", "nav ul li:hover #", "#ShopMainMenuItem:after", "ShopMainMenuItem", "CoffeeLink", "ShopDropDownMenu", "ShopLink");
+			SetDropDownMenuAndArrowTopAndLeft("ShopDropDownMenu", "nav ul li ul li:hover #", "#CoffeeDropDownMenuItem:after", "CoffeeDropDownMenuItem", "CelebesKalossiLink", "CoffeeDropDownMenu", "CoffeeLink");
+
+		</script>
+
+	</header> <!-- END HEADER -->
+
+	<!-- MAIN is right column of Coffee product page displaying three different coffees wih an image, name, country and region, and when moused over price and flavor notes.. -->
+	<main id="Main">
+
+		<script type="text/javascript">
+
+			/* Set left margin of <main> to width of left column, <header>. */
+			SetMainLeftMargin("Main", "HeaderCCO");
+			/* Set Main Width to difference between Viewport and <header> width. */
+			SetMainWidthAndHeight("Main", "HeaderCCO");
+
+		</script>
+
+		<!-- COFFEE PRODUCT HEADER in right column. -->
+		<h1 id="HeaderCoffee" class="HeaderProduct">Coffee</h1>
+
+		<!-- FIGURES used as containers to hold different coffee products, each of which includes product image and figure captions of name, region and country, and when moused, flavor notes and price. */
+		<!-- Celebes Kalossi Figure -->
+		<figure id="CelebesKalossiFigure" class="FigureContainer">
+
+			<picture>
+				<!--[if IE 9]><video style="display: none;"><![endif]-->
+				<source media="(min-width:61.875em) and (max-width:87.8125em) and (min-height:34.25em) and (max-height:48.4375em) and (orientation:landscape)" srcset="Images/celebes-kalossi-coffee-bean-field.jpg">
+				<img id="CelebesKalossi" class="ImageBorder" src="Images/celebes-kalossi-coffee-bean-field.jpg" srcset="Images/celebes-kalossi-coffee-bean-field.jpg">
+				<!--[if IE 9]></video><![endif]-->
+			</picture>
+
+			<figcaption id="CelebesKalossiTitle" class="TitleName"><script type="text/javascript">GetObjectFieldValueFromDB("CelebesKalossiTitle", productDatabase[0], "name")</script></figcaption>
+
+			<figcaption id="CelebesKalossiCountryAndRegion"
+			class="TitleCountryAndRegion"><script type="text/javascript"> GetObjectFieldValueFromDB("CelebesKalossiCountryAndRegion", productDatabase[0], "countryAndRegion");</script></figcaption>
+
+			<figcaption id="CelebesKalossiFlavorNotes" class="TitleFlavorNotesAndPrice"><script type="text/javascript"> GetObjectFieldValueFromDB("CelebesKalossiFlavorNotes", productDatabase[0], "flavorNotes");</script></figcaption>
+
+			<figcaption id="CelebesKalossiPrice" class="TitleFlavorNotesAndPrice"><script type="text/javascript"> GetObjectFieldValueFromDB("CelebesKalossiPrice", productDatabase[0], "priceText");</script></figcaption>
+
+			<button id="CelebesKalossiAddToCart" class="AddToCart" name="CelebesKalossiAddToCart"
+			onclick="DisplayShoppingCartIconArrowAndDropDown('ShoppingCartIcon', 'ShoppingCartDropDown', 'ShoppingCartTotal', productDatabase[0]);">Add To
+			Cart</button>
+
+		</figure>
+
+		<figure id="CelebesKalossiFigure1" class="FigureContainer">
+
+			<picture>
+				<!--[if IE 9]><video style="display: none;"><![endif]-->
+				<source media="(min-width:61.875em) and (max-width:87.8125em) and (min-height:34.25em) and (max-height:48.4375em) and (orientation:landscape)" srcset="Images/celebes-kalossi-coffee-bean-field.jpg">
+				<img id="CelebesKalossi1" class="ImageBorder" src="Images/celebes-kalossi-coffee-bean-field.jpg" srcset="Images/celebes-kalossi-coffee-bean-field.jpg">
+				<!--[if IE 9]></video><![endif]-->
+			</picture>
+
+			<figcaption id="CelebesKalossiTitle1" class="TitleName"><script type="text/javascript">GetObjectFieldValueFromDB("CelebesKalossiTitle1", productDatabase[1], "name")</script></figcaption>
+
+			<figcaption id="CelebesKalossiCountryAndRegion1" class="TitleCountryAndRegion"><script type="text/javascript">
+			GetObjectFieldValueFromDB("CelebesKalossiCountryAndRegion1", productDatabase[1], "countryAndRegion");</script></figcaption>
+
+			<figcaption id="CelebesKalossiFlavorNotes1" class="TitleFlavorNotesAndPrice"><script type="text/javascript"> GetObjectFieldValueFromDB("CelebesKalossiFlavorNotes1", productDatabase[1], "flavorNotes");</script></figcaption>
+
+			<figcaption id="CelebesKalossiPrice1" class="TitleFlavorNotesAndPrice"><script type="text/javascript"> GetObjectFieldValueFromDB("CelebesKalossiPrice1", productDatabase[1], "priceText");</script></figcaption>
+
+			<button id="CelebesKalossiAddToCart1" class="AddToCart" name="CelebesKalossiAddToCart" onclick="DisplayShoppingCartIconArrowAndDropDown('ShoppingCartIcon', 'ShoppingCartDropDown', 'ShoppingCartTotal', productDatabase[1]);">Add To Cart</button>
+
+		</figure>
+
+		<figure id="CelebesKalossiFigure2" class="FigureContainer">
+
+			<picture>
+				<!--[if IE 9]><video style="display: none;"><![endif]-->
+				<source media="(min-width:61.875em) and (max-width:87.8125em) and (min-height:34.25em) and (max-height:48.4375em) and (orientation:landscape)" srcset="Images/celebes-kalossi-coffee-bean-field.jpg">
+				<img id="CelebesKalossi2" class="ImageBorder" src="Images/celebes-kalossi-coffee-bean-field.jpg" srcset="Images/celebes-kalossi-coffee-bean-field.jpg">
+				<!--[if IE 9]></video><![endif]-->
+			</picture>
+
+			<figcaption id="CelebesKalossiTitle2" class="TitleName"><script type="text/javascript">GetObjectFieldValueFromDB("CelebesKalossiTitle2", productDatabase[2], "name")</script></figcaption>
+
+			<figcaption id="CelebesKalossiCountryAndRegion2" class="TitleCountryAndRegion"><script type="text/javascript">
+				GetObjectFieldValueFromDB("CelebesKalossiCountryAndRegion2", productDatabase[2], "countryAndRegion");</script></figcaption>
+
+			<figcaption id="CelebesKalossiFlavorNotes2" class="TitleFlavorNotesAndPrice"><script type="text/javascript"> GetObjectFieldValueFromDB("CelebesKalossiFlavorNotes2", productDatabase[2], "flavorNotes");</script></figcaption>
+
+			<figcaption id="CelebesKalossiPrice2" class="TitleFlavorNotesAndPrice"><script type="text/javascript"> GetObjectFieldValueFromDB("CelebesKalossiPrice2", productDatabase[2], "priceText");</script></figcaption>
+
+			<button id="CelebesKalossiAddToCart2" class="AddToCart" name="CelebesKalossiAddToCart" onclick="DisplayShoppingCartIconArrowAndDropDown('ShoppingCartIcon', 'ShoppingCartDropDown', 'ShoppingCartTotal', productDatabase[2]);">Add To Cart</button>
+
+		</figure>
+
+		<figure id="CelebesKalossiFigure3" class="FigureContainer">
+
+			<picture>
+				<!--[if IE 9]><video style="display: none;"><![endif]-->
+				<source media="(min-width:61.875em) and (max-width:87.8125em) and (min-height:34.25em) and (max-height:48.4375em) and (orientation:landscape)" srcset="Images/celebes-kalossi-coffee-bean-field.jpg">
+				<img id="CelebesKalossi3" class="ImageBorder" src="Images/celebes-kalossi-coffee-bean-field.jpg" srcset="Images/celebes-kalossi-coffee-bean-field.jpg">
+				<!--[if IE 9]></video><![endif]-->
+			</picture>
+
+			<figcaption id="CelebesKalossiTitle3" class="TitleName"><script type="text/javascript">GetObjectFieldValueFromDB("CelebesKalossiTitle3", productDatabase[3], "name")</script></figcaption>
+
+			<figcaption id="CelebesKalossiCountryAndRegion3" class="TitleCountryAndRegion"><script type="text/javascript">
+				GetObjectFieldValueFromDB("CelebesKalossiCountryAndRegion3", productDatabase[3], "countryAndRegion");</script></figcaption>
+
+			<figcaption id="CelebesKalossiFlavorNotes3" class="TitleFlavorNotesAndPrice"><script type="text/javascript"> GetObjectFieldValueFromDB("CelebesKalossiFlavorNotes3", productDatabase[3], "flavorNotes");</script></figcaption>
+
+			<figcaption id="CelebesKalossiPrice3" class="TitleFlavorNotesAndPrice"><script type="text/javascript"> GetObjectFieldValueFromDB("CelebesKalossiPrice3", productDatabase[3], "priceText");</script></figcaption>
+
+			<button id="CelebesKalossiAddToCart3" class="AddToCart" name="CelebesKalossiAddToCart" onclick="DisplayShoppingCartIconArrowAndDropDown('ShoppingCartIcon', 'ShoppingCartDropDown', 'ShoppingCartTotal', productDatabase[3]);">Add To Cart</button>
+
+		</figure>
+
+		<!-- NEXT AND PREVIOUS ARROWS to display last figure when total width of figures is more than or equal to width of Main. Arrows are displayed in DisplayArrowForProductSelection called from CenterFigures. -->
+		<button id="ArrowNext" class="Arrow" name="ArrowNext" onclick="directionFlag = true; figureIdArray = DisplayProductSelectionOfArrow(directionFlag, figureIdArray);">&#10095</button>
+		<button id="ArrowPrevious" class="Arrow" name="ArrowPrevious" onclick="directionFlag = false; figureIdArray = DisplayProductSelectionOfArrow(directionFlag, figureIdArray);">&#10094</button>
+
+		<!--<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>-->
+
+		<!-- SHOPPING CART ICON, ARROW, AND DROP DOWN -->
+		<ul id="ShoppingCartContainer">
+			<li id="ShoppingCartIcon"><img src="Images/shopping-cart5.png" style="width: 32px; height: 32px;" alt="Shopping Cart Icon.">
+				<div id="ShoppingCartArrow"></div>
+				<ul id="ShoppingCartDropDown">
+					<li id="ShoppingCartTitle">Shopping Cart</li>
+					<li id="ShoppingCartTotal"></li>
+					<li id="ShoppingCartCheckout"><a id="Checkout" href="Checkout.html">Checkout</a></li>
+				</ul>
+			</li>
+		</ul>
+
+		<!-- FIGURE ID ARRAY, DIRECTION FLAG, CenterTextToObject, CenterFigures, ConfigureAddEventListener for Mouse Enter and Leave -->
+		<script type="text/javascript">
+
+			/* Figure Id Array for next and previous arrows that are displayed over last figure when total width of figures is more than or equal to width of Main.  The last figure is then displayed using arrows. */
+			var figureIdArray = ["CelebesKalossiFigure", "CelebesKalossiFigure1","CelebesKalossiFigure2","CelebesKalossiFigure3"];
+			var directionFlag = undefined;
+
+			/* Centers text underneath images. */
+			CenterTextToObject("CelebesKalossiTitle", "CelebesKalossi");
+			CenterTextToObject("CelebesKalossiCountryAndRegion", "CelebesKalossi");
+
+			CenterTextToObject("CelebesKalossiTitle1", "CelebesKalossi1");
+			CenterTextToObject("CelebesKalossiCountryAndRegion1", "CelebesKalossi1");
+
+			CenterTextToObject("CelebesKalossiTitle2", "CelebesKalossi2");
+			CenterTextToObject("CelebesKalossiCountryAndRegion2", "CelebesKalossi2");
+
+			CenterTextToObject("CelebesKalossiTitle3", "CelebesKalossi3");
+			CenterTextToObject("CelebesKalossiCountryAndRegion3", "CelebesKalossi3");
+
+			/* Centers figures vertically and horizontally. */
+			CenterFigures("Main", figureIdArray, "ArrowNext", "ArrowPrevious");
+
+			/* Configures mouseover and mouseleave events for product figures. When figure is moused over, DisplayFlavorNotesAndPrice on image. */
+			argumentArray = ["CelebesKalossiFigure"];
+			ConfigureAddEventListener("CelebesKalossiFigure", "mouseover", "mouseover", true, DisplayFlavorNotesAndPriceOnImage, argumentArray);
+			ConfigureAddEventListener("CelebesKalossiFigure", "mouseleave", "mouseleave", true, RemoveFlavorNotesAndPriceFromImage, argumentArray);
+
+			argumentArray = ["CelebesKalossiFigure1"];
+			ConfigureAddEventListener("CelebesKalossiFigure1", "mouseover", "mouseover", true, DisplayFlavorNotesAndPriceOnImage, argumentArray);
+			ConfigureAddEventListener("CelebesKalossiFigure1", "mouseleave", "mouseleave", true, RemoveFlavorNotesAndPriceFromImage, argumentArray);
+
+			argumentArray = ["CelebesKalossiFigure2"];
+			ConfigureAddEventListener("CelebesKalossiFigure2", "mouseover", "mouseover", true, DisplayFlavorNotesAndPriceOnImage, argumentArray);
+			ConfigureAddEventListener("CelebesKalossiFigure2", "mouseleave", "mouseleave", true, RemoveFlavorNotesAndPriceFromImage, argumentArray);
+
+			argumentArray = ["CelebesKalossiFigure3"];
+			ConfigureAddEventListener("CelebesKalossiFigure3", "mouseover", "mouseover", true, DisplayFlavorNotesAndPriceOnImage, argumentArray);
+			ConfigureAddEventListener("CelebesKalossiFigure3", "mouseleave", "mouseleave", true, RemoveFlavorNotesAndPriceFromImage, argumentArray);
+
+			SetShoppingCartIconArrowAndDropDownTopAndLeft("ShoppingCartContainer", "ShoppingCartIcon", "HeaderCoffee", "ArrowPrevious", "ShoppingCartArrow", "ShoppingCartDropDown", "#ShoppingCartIcon:hover #");
+			var length = productDatabase.length;
+			alert(length);
+			var key = productDatabase[0].key[0].value;
+
+		</script>
+
+	</main>
+
+</body>
+</html>
